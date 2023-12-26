@@ -15,7 +15,9 @@ The concept of permission and ownership of Linux files is crucial in Linux. Here
 3. **Others:** Any other user who has access to a file. This user did not create the file and does not belong to a user group that could own the file. In practice, this means everyone. Therefore, when you define authorization for others, we also speak of authorization for the whole world.
 4. **Super user and `sudo`:** As we've seen, certain permissions are sometimes denied. To acquire these rights again, we log on as a superuser, also known as root. We can use this superuser role in several different ways:
 
-> Log on aa root using the <pre><code>sudo su</code><pre>.
+> Log on aa root using the 
+
+	<pre><code>sudo su</code><pre>
 
 	You'll notice that the command prompt has changed: the usual $ has been changed to #. Moreover, we'll notice that the cd command no longer returns to /home/ubuntu but to /root . We exit this super-user mode using the exit command. If we use superuser rights for a single command, we can use the sudo clause to introduce the command. Here, our ubuntu user has no password, but this command should generate a password prompt.
 
