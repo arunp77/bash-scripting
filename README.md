@@ -17,7 +17,7 @@ The concept of permission and ownership of Linux files is crucial in Linux. Here
 
 > Log on aa root using the 
 
-<code>sudo su</code>
+<pre><code>sudo su</code></pre>
 
 You'll notice that the command prompt has changed: the usual $ has been changed to #. Moreover, we'll notice that the cd command no longer returns to /home/ubuntu but to /root . We exit this super-user mode using the exit command. If we use superuser rights for a single command, we can use the sudo clause to introduce the command. Here, our ubuntu user has no password, but this command should generate a password prompt.
 
