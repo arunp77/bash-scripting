@@ -32,7 +32,7 @@ Every file and folder on your system has the following 3 permissions defined for
 
 or 
 
-<pre><code>chmod 777 file</code></pre>
+<pre><code>chmod a+rwx file</code></pre>
 
 can be used to change the permission. The first way is to use a binary representation of permissions: each number corresponds to a user group, as seen previously when reading rights.
 
@@ -168,9 +168,7 @@ Let's suppose we have a file: `script.sh`. There are two ways to run this file:
 	- <code>crontab -l</code> : To display the contents of the crontab file ;
 	- <code>crontab -u [username]</code> : To modify another user's crontab file;
 	- <code>crontab -r</code>: To delete the current user's crontab file ;
-	- <code>crontab -i<code/>: To display a prompt before deleting the current user's crontab file.
-
-
+	- <code>crontab -i</code/>: To display a prompt before deleting the current user's crontab file. 
 
 ## Reference
 - [Linux system](https://arunp77.github.io/Arun-Kumar-Pandey/linux-systems.html)
