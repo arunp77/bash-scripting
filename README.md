@@ -55,8 +55,13 @@ can be used to change the permission. The first way is to use a binary represent
    - `+`: do we give or take away rights: `+` to give and `-` to take away. remove 
 
 #bash-scripting
+Bash is a language installed by default on Linux machines to control file manipulation. A Bash script is a simple file containing lines of code written in Bash that can be executed. At its base, it contains a shebang, which corresponds to an indicator of the shell location to be used to execute the code, and takes the form :
+- In bash script: <pre><code>#!/bin/bash</code></pre>
+- In a python script:  <pre><code>#!/bin/python3</code></pre> 
+This allows the file to execute itself. 
 
-### Execution
+<div class="box">
+### Command prompt
 - Create a file using command ===> `vi filename.sh`
 - To make the text file executable ===> `chmod 755 filename.sh` 
 - To run the script ===> `./filename.sh`
@@ -81,8 +86,12 @@ The .bashrc file is a configuration file used by the Bash shell, which is a comm
 The main role of the .bashrc file is to define environment variables, aliases and custom functions for the Bash shell. When a user opens a terminal session, the .bashrc file is automatically executed to load these custom configurations.
 
 > `source ~/.bashrc` => It's important to note that changes made to the .bashrc file only take effect when you open a new terminal session or run this command.
+</div>
 
-
+### Bash script
+Let's suppose we have a file: `script.sh`. There are two ways to run this file:
+-  <pre><code>bash script.sh</code></pre>
+-  <pre><code>./script.sh</code></pre>
 
 ## Reference
 - [Linux system](https://arunp77.github.io/Arun-Kumar-Pandey/linux-systems.html)
