@@ -164,11 +164,11 @@ Let's suppose we have a file: `script.sh`. There are two ways to run this file:
 	- The defined Cron Job executes our script at 1-minute intervals: observe the evolution of the <code>data_cron.txt</code> file over the minutes.
 
 4. **Common commands:**
-	- <code>crontab -e</code>: To modify the current user's crontab file;
-	- <code>crontab -l</code> : To display the contents of the crontab file ;
-	- <code>crontab -u [username]</code> : To modify another user's crontab file;
-	- <code>crontab -r</code>: To delete the current user's crontab file ;
-	- <code>crontab -i</code/>: To display a prompt before deleting the current user's crontab file. 
+- <code>crontab -e</code>: To modify the current user's crontab file;
+- <code>crontab -l</code> : To display the contents of the crontab file ;
+- <code>crontab -u [username]</code> : To modify another user's crontab file;
+- <code>crontab -r</code>: To delete the current user's crontab file ;
+- <code>crontab -i</code/>: To display a prompt before deleting the current user's crontab file. 
 
 ## Reference
 - [Linux system](https://arunp77.github.io/Arun-Kumar-Pandey/linux-systems.html)
