@@ -93,6 +93,83 @@ Let's suppose we have a file: `script.sh`. There are two ways to run this file:
 -  <pre><code>bash script.sh</code></pre>
 -  <pre><code>./script.sh</code></pre>
 
+## Process
+1. **What is process?**
+   An instance of a program is called a process. In simple terms, any command you give your Linux machine starts a new process. An application on your system, a Bash script, or even a simple <code>ls</code> command creates a new process. Several processes can run at the same time. There are two types of process:
+   - **Foreground processes_:** These run on the screen and require user intervention (Office, your web browser, photo/video editing applications, etc.).
+   - **Background processes_:** These run in the background and generally do not require user intervention (Antivirus, Python web scraping program, etc.). 
+2. **Process execution:** 
+   - **Foreground:** To launch a foreground process, you can either run it from the dashboard or from the terminal.If you're using the terminal, you'll have to wait for the foreground process to finish.
+   - **Background:** If you start a foreground program/process from the terminal, you cannot work on the terminal until the program has finished. Particular data-intensive tasks require a lot of processing power and can even take hours. You don't want your terminal to be tied up for that length of time. To avoid such a situation, you can run the program and send it in the background so that the terminal remains available to you. Let's see how.
+3. **Setting the scene:** Let's imagine the following Python script is used for webscraping. Every second, it retrieves data and writes it to the data.txt file.
+   <pre><code>
+     import time
+     i = 0
+     while i < (60 * 20):
+          file = open("data.txt", "a")
+          file.write(str(i) + "\n")
+          file.close()
+          i += 1
+          time.sleep(1)
+    </code></pre>
+    Copy this script into a webscraping.py file and run it.
+    <code>python3 webscraping.py</code>
+ 
+    You've just launched your foreground script. The problem is that the script will run for 20 minutes. We'd like to have some control over our terminal during this time. To achieve this, there are several commands available to interact with our process.
+    
+    For each command we'll be looking at, take a moment to observe the last lines of the <code>data.txt</code> file (e.g. tail -3 data.txt).
+    - First of all, to regain control of our terminal, we need to pause our process. To pause a process running in the foreground, simply press the Ctrl+z keys on your keyboard. 
+    - **Background:** To run a process in the background use <code>&</code>.
+      <pre><code>python3 webscraping.py &</code></pre>
+4. Check all the running processes: <code>htop</code>. This utility informs the user of all processes running on the Linux machine. Issue the htop command, and a huge amount of information is displayed in front of you. That's right! There are lots of processes running on your system that you don't even know are there. Explore the tool to find our process, which must surely be running via the man command.
+5. **Process status:** <code>ps</code> is used to check the status of processes. This command is similar to the htop command, but the information displayed is differentps
+6. **PID:** With the previous tools, one of the pieces of information concerning our process is the PID for Process ID. This identifier enables us to interact directly with the process. For example, you can perform a ps PID to obtain only the process information concerned, or you can decide to terminate the process. To easily find the PID of a process, you can use the pidof Process_Name command. In our example: pidof python3 webscraping.py
+7. **End process: Kill** The kill command terminates running processes on a Linux machine. To use it, you need to know the PID (process identifier) of the process you want to kill and execute the kill PID command.
+
+## Crontab
+1. **What is Crontab?**
+	Cron takes its name from the Greek word "Chronos", meaning time. This is a process that automatically executes tasks according to a specific schedule. It is a set of commands that are used to execute regular scheduling tasks. Crontab is also the name of the program used to modify this schedule. It is driven by a crontab file, a configuration file that specifies the shell commands to be executed periodically for the specific program.
+
+	Crontab is often used to automate tasks such as log management, cache data cleansing, sending newsletter emails or automating your data scraping script.
+2. **Cron Job syntax:** A Cron Job is an automation of tasks to be performed. The syntax is as follows: <code>* * * * * command/script</code>
+
+	From left to right:
+	- The first <code>*</code> corresponds to Minutes (0-59);
+	- The second <code>*</code> corresponds to the Hours (0-23);
+	- The third <code>*</code> corresponds to the Day of the month (1-31);
+	- The fourth <code>*</code> corresponds to the Month of the year (1-12);
+	- The fifth <code>*</code> corresponds to the Day of the Week (0-6, Sunday to Saturday).
+  To specify multiple values in a field, use the following operator symbols:
+	- Asterisk (<code>*</code>): To specify all possible values for a field;
+	- Hyphen (<code>-</code>): To specify a range of values ;
+	- Comma (<code>,</code>): To specify a list of values;
+	- The separator (<code>/</code>): To specify a step value.
+
+	**Example:** Here are a few examples using the above syntax:
+	1. Run a Cron Job at 5:15 a.m. every day. <code>15 5 * * * command/script</code>
+	2. Run a Cron Job at 5.15am every 2nd day of the month.<code>15 5 2 * * command/script</code>
+	3. Run a Cron Job every 5 hours.: <code>0 */5 * * * command/script</code>
+	4. Run a Cron Job every Monday and Wednesday in January and February. <code>0 0 * jan,feb mon,wed command/script</code>
+
+3. **Putting it into practice:** Create the following test.sh script: 
+	<pre><code>
+           #!/bin/bash
+           echo "Cron Job" >> ~/cront.txt
+	</code></pre>
+	Next, give execution rights to the test.sh script via the following instruction: <code>chmod +x ~/test.sh</code>
+	- Now run the <code>crontab -e</code> command to add a job.
+	- Insert the following line in the file: <code>*/1 * * * * ~/test.sh</code>.
+	- The defined Cron Job executes our script at 1-minute intervals: observe the evolution of the <code>data_cron.txt</code> file over the minutes.
+
+4. **Common commands:**
+	- <code>crontab -e</code>: To modify the current user's crontab file;
+	- <code>crontab -l</code> : To display the contents of the crontab file ;
+	- <code>crontab -u [username]</code> : To modify another user's crontab file;
+	- <code>crontab -r</code>: To delete the current user's crontab file ;
+	- <code>crontab -i<code/>: To display a prompt before deleting the current user's crontab file.
+
+
+
 ## Reference
 - [Linux system](https://arunp77.github.io/Arun-Kumar-Pandey/linux-systems.html)
 - [Bash-scriptinh](https://arunp77.github.io/Arun-Kumar-Pandey/bash-scripting.html)
